@@ -1,15 +1,26 @@
 var startButton = document.querySelector('.start-button')
-var questionContainer = document.querySelector('.question-container').value
-var answerContainer = document.querySelector('.answer-container').value
+var questionContainer = document.querySelector('.question-container')
+var answerContainer = document.querySelector('.answer-container')
 var submissionButton = document.querySelector('.submission-button')
 var score = 0
+var currentQuestion = []
+var currentAnswerChoices = []
 
-startButton.addEventListener('click', nextQuestion)
+startButton.addEventListener('click', generateNextQuestion)
 
-function nextQuestion () {
-  // for (var i = 0; i<=10; i++)
-  //   questionContainer = triviaQuestions[i].question
-  //   answerContainer = triviaQuestions[i].answerChoices
+function generateNextQuestion () {
+  currentQuestion.push(triviaQuestions[0].question)
+  currentAnswerChoices.push(triviaQuestions[0].answerChoices)
+  return showQuestion()
+}
+
+function showQuestion () {
+  questionContainer.innerHTML = currentQuestion[0]
+  return showAnswerChoices()
+}
+
+function showAnswerChoices () {
+  answerContainer.innerHTML = currentAnswerChoices[0]
 }
 
 // function submit () {}

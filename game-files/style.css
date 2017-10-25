@@ -11,20 +11,28 @@ body {
 .header-container {
   background-color: #ffffff;
   margin: 20px 250px 10px 250px;
-  padding-bottom: 30px;
+  padding: 0px 10px 30px 10px;
 }
 
 h1 {
-  color: #C9DECB;
+  color: #a2c1a4;
   font-size: 50pt;
 }
 
 h2 {
-  color: #152a41;
+  color: #385777;
+}
+
+h3 {
+  color: #385777;
 }
 
 .game-container {
   background-color: #ffffff;
   margin: 20px 100px 10px 100px;
   padding: 0px 40px 30px 40px;
+}
+
+.game-title {
+  font-style: italic;
 }
