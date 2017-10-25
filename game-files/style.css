@@ -36,3 +36,7 @@ h3 {
 .game-title {
   font-style: italic;
 }
+
+.answer-container {
+    display: none;
+}
