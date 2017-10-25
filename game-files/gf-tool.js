@@ -101,5 +101,8 @@ startButton.addEventListener('click', nextQuestion())
 
 function nextQuestion () {
   for (var i = 0; i<=10; i++)
-    triviaQuestions[i].question
+    questionContainer = triviaQuestions[i].question
+    answerContainer = triviaQuestions[i].answerChoices
 }
+
+// function submit () {}

@@ -1,0 +1,30 @@
+body {
+  background-color: #F7F7F3;
+  color: #55595d;
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-container {
+  background-color: #ffffff;
+  margin: 20px 250px 10px 250px;
+  padding-bottom: 30px;
+}
+
+h1 {
+  color: #C9DECB;
+  font-size: 50pt;
+}
+
+h2 {
+  color: #152a41;
+}
+
+.game-container {
+  background-color: #ffffff;
+  margin: 20px 100px 10px 100px;
+  padding: 0px 40px 30px 40px;
+}
