@@ -4,27 +4,36 @@ var answerContainer = document.querySelector('.answer-container')
 var submissionButton = document.querySelector('.submission-button')
 var score = 0
 var currentQuestion
-var currentAnswerChoices
+var currentAnswerChoices = []
 
-startButton.addEventListener('click', generateNextQuestion)
-
-function generateNextQuestion () {
-  currentQuestion = triviaQuestions[0].question
-  currentAnswerChoices = triviaQuestions[0].answerChoices // instead of replacing array entirely, should I push these consecutively in a for loop?
-  return showQuestion()
-}
-
-function showQuestion () {
+startButton.addEventListener('click', function showQuestions () {
+  currentQuestion = `${triviaQuestions[0].question}`
   questionContainer.innerHTML = currentQuestion
-  return showAnswerChoices()
+  return showAnswers ()
+})
+
+function showAnswers () {
+  answerContainer.style.display = 'inline'
+  for (letter in triviaQuestions[0].answerChoices) {
+    currentAnswerChoices.push(`<div class='choice'> ${letter} : ${triviaQuestions[0].answerChoices.letter}</label>`)
+  }
+  answerContainer.innerHTML = currentAnswerChoices.join('<br>')
 }
 
-function showAnswerChoices () {
-  answerContainer.style.display = 'initial'
-  for (var i = 0; i < currentAnswerChoices.length; i++ ) {
-    answerContainer.getElementsByClassName('choice[i]').innerHTML = currentAnswerChoices[i]
-  }
-}
+answerContainer.addEventListener('mouseover', function (e) {
+  e.target.style.color = '#a2c1a4'
+  // if (e.target.style.color === '#55595d') {
+  //   console.log('hovered')
+  //   e.target.style.color = '#a2c1a4'
+  // } else {
+  //   e.target.style.color = '#55595d'
+  // }
+})
+
+answerContainer.addEventListener('mouseout', function (e) {
+  e.target.style.color = '#55595d'
+})
+
   // for (var i = 0; i <= currentAnswerChoices.length; i++) {
   //   var answerField = document.createElement("input") // how to create various attributes of input field? (and what attributes are necessary?)
   //   answerField.setAttribute("type", "radio")
@@ -39,52 +48,102 @@ function showAnswerChoices () {
 var triviaQuestions = [
   {
     question: 'Question 1',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'b'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'b',
+    type: 'radio'
   },
   {
     question: 'Question 2',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'b'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'b',
+    type: 'radio'
   },
   {
     question: 'Question 3',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'c'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'c',
+    type: 'radio'
   },
   {
     question: 'Question 4',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'a'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'a',
+    type: 'radio'
   },
   {
     question: 'Question 5',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'a'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'a',
+    type: 'radio'
   },
   {
     question: 'Question 6',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'b'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'b',
+    type: 'radio'
   },
   {
     question: 'Question 7',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'a'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'a',
+    type: 'radio'
   },
   {
     question: 'Question 8',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'c'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'c',
+    type: 'radio'
   },
   {
     question: 'Question 9',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'a'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'a',
+    type: 'radio'
   },
   {
     question: 'Question 10',
-    answerChoices: ['A', 'B', 'C'],
-    correctAnswer: 'b'
+    answerChoices: {
+      a: 'A',
+      b: 'B',
+      c: 'C'
+    },
+    correctAnswer: 'b',
+    type: 'radio'
   }
 ]
