@@ -5,13 +5,14 @@ var nextButton = document.querySelector('.next')
 var scoreContainer = document.querySelector('.trivia-score')
 var returnHomeButton = document.querySelector('#return-home')
 var timerText = document.querySelector('.trivia-timer')
-var timer = 60000
+var timer = 60
 var score = 0
 var currentQuestion
 var currentAnswerChoices = []
 var counter = 0
 
 startButton.addEventListener('click', showQuestions)
+startButton.addEventListener('click', startTimer)
 
 function showQuestions () {
   startButton.style.display = 'none'
@@ -85,12 +86,16 @@ function showFinalScore () {
   returnHomeButton.style.display = 'inline'
 }
 
-setInterval(function () {
-  timer --
-  if (timer === 0) {
-    clearInterval ()
-    console.log('time is up')
-  }
-}, 1000)
-
-timerText
+function startTimer () {
+  setInterval(function () {
+    timer--
+    if (timer <= 0) {
+      timerText.innerHTML = '00:00'
+      clearInterval(startTimer)
+    } else if (timer < 10) {
+      timerText.innerHTML = '00:0' + timer
+    } else if (timer >= 10) {
+      timerText.innerHTML = '00:' + timer
+    }
+  }, 1000)
+}
