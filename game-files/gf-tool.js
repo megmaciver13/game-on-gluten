@@ -2,6 +2,7 @@ var startButton = document.querySelector('#start-button')
 var questionContainer = document.querySelector('.question-container')
 var answerContainer = document.querySelector('.answer-container')
 var nextButton = document.querySelector('.next')
+var scoreContainer = document.querySelector('.trivia-score')
 var score = 0
 var currentQuestion
 var currentAnswerChoices = []
@@ -42,6 +43,7 @@ answerContainer.addEventListener('click', function (e) {
     questionContainer.innerHTML = correctDiv
     nextButton.style.display = 'inline'
     score += 1
+    scoreContainer.innerHTML = score
   } else {
     answerContainer.style.display = 'none'
     questionContainer.innerHTML = wrongDiv
