@@ -1,4 +1,4 @@
-var startButton = document.querySelector('.start-button')
+var startButton = document.querySelector('#start-button')
 var questionContainer = document.querySelector('.question-container')
 var answerContainer = document.querySelector('.answer-container')
 var nextButton = document.querySelector('.next')
@@ -10,9 +10,10 @@ var counter = 0
 startButton.addEventListener('click', showQuestions)
 
 function showQuestions () {
+  startButton.style.display = 'none'
   currentQuestion = `${triviaQuestions[counter].question}`
   questionContainer.innerHTML = currentQuestion
-  return showAnswers ()
+  return showAnswers()
 }
 
 function showAnswers () {
@@ -31,16 +32,19 @@ answerContainer.addEventListener('mouseout', function (e) {
   e.target.style.color = '#55595d'
 })
 
-answerContainer.addEventListener('click', function (e){
+answerContainer.addEventListener('click', function (e) {
   var correctAnswerLetter = triviaQuestions[counter].correctAnswer
   var correctAnswer = `triviaQuestions[0].answerChoices.${correctAnswerLetter}`
   var wrongDiv = `<div class='wrong'>Not quite!</div>`
-  var correctDiv = `<div class='correct'>Correct!</div>`
+  var correctDiv = `<div class='correct'>Correct! You have been awarded 1 point!</div>`
   if (e.target.className === `choice${triviaQuestions[counter].correctAnswer}`) {
-    answerContainer.innerHTML = correctDiv
+    answerContainer.style.display = 'none'
+    questionContainer.innerHTML = correctDiv
     nextButton.style.display = 'inline'
+    score += 1
   } else {
-    answerContainer.innerHTML = wrongDiv
+    answerContainer.style.display = 'none'
+    questionContainer.innerHTML = wrongDiv
     nextButton.style.display = 'inline'
   }
 })
@@ -50,7 +54,7 @@ nextButton.addEventListener('click', generateNextQuestion)
 function generateNextQuestion () {
   currentAnswerChoices = []
   counter += 1
-  showQuestions ()
+  showQuestions()
 }
 
 var triviaQuestions = [
