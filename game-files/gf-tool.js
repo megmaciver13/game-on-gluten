@@ -16,6 +16,7 @@ startButton.addEventListener('click', startTimer)
 
 function showQuestions () {
   startButton.style.display = 'none'
+  nextButton.style.display = 'none'
   currentQuestion = `${triviaQuestions[counter].question}`
   questionContainer.innerHTML = currentQuestion
   return showAnswers()
@@ -23,9 +24,14 @@ function showQuestions () {
 
 function showAnswers () {
   answerContainer.style.display = 'inline'
-  for (letter in triviaQuestions[counter].answerChoices) {
-    currentAnswerChoices.push(`<div class='choice${letter}'> ${letter} : ${triviaQuestions[counter].answerChoices.letter}</div>`)
-  }
+  answerContainer.innerHTML = ''
+  currentAnswerChoices.push(`<div class='choicea'> A : ${triviaQuestions[counter].answerChoices.a}</div>`)
+  currentAnswerChoices.push(`<div class='choiceb'> B : ${triviaQuestions[counter].answerChoices.b}</div>`)
+  currentAnswerChoices.push(`<div class='choicec'> C : ${triviaQuestions[counter].answerChoices.c}</div>`)
+  // couldn't get the following to work
+  // for (letter in triviaQuestions[counter].answerChoices) {
+  //   currentAnswerChoices.push(`<div class='choice${letter}'> ${letter} : ${triviaQuestions[counter].answerChoices.letter}</div>`)
+  // }
   answerContainer.innerHTML = currentAnswerChoices.join('<br>')
 }
 
@@ -57,7 +63,7 @@ answerContainer.addEventListener('click', function (e) {
 
 nextButton.addEventListener('click', generateNextQuestion)
 
-// event listener to click enter for 'next question' page
+// attempt at event listener to click enter for 'next question' button:
 // if (questionContainer.innerHTML === wrongDiv || questionContainer.innerHTML === correctDiv) {
 //   window.addEventListener('keypress', generateNextQuestion)
 // }
@@ -68,30 +74,50 @@ function generateNextQuestion () {
     counter += 1
     showQuestions()
   } else {
+    counter += 1
     showFinalScore()
   }
 }
 
 function showFinalScore () {
   if (score === 0) {
-    answerContainer.style.display = 'none'
+    nextButton.style.display = 'none'
     questionContainer.innerHTML = 'Game over! Unfortunately, you did not score. You need to brush up on your gluten knowledge!'
   } else if (score < (counter - 5)) {
-    answerContainer.style.display = 'none'
+    nextButton.style.display = 'none'
     questionContainer.innerHTML = `Your final score is ${score}. Looks like you need to brush up on your gluten knowledge.`
   } else if (score <= counter) {
-    answerContainer.style.display = 'none'
+    nextButton.style.display = 'none'
     questionContainer.innerHTML = `Your final score is ${score}. Looks like you know a thing or two about gluten!`
   }
   returnHomeButton.style.display = 'inline'
 }
 
+returnHomeButton.addEventListener('click', resetPage)
+
+function resetPage () {
+  questionContainer.innerHTML = "So you want to learn more about gluten? You've come to right place. Welcome to <a class='game-title'>Can I Eat This?</a>, a game on gluten. You'll learn all about this pervasive protein - what it is, what it's in, and how to avoid it. Click the button below to begin.<br>"
+  returnHomeButton.style.display = 'none'
+  startButton.style.display = 'inline'
+  counter = 0
+  score = 0
+  timer = 60
+  currentAnswerChoices = []
+}
+
 function startTimer () {
-  setInterval(function () {
+  var gameTimer = setInterval(function () {
     timer--
-    if (timer <= 0) {
+    if (timer === 0) {
+      timer = 0
       timerText.innerHTML = '00:00'
-      clearInterval(startTimer)
+      clearInterval(gameTimer)
+      // fix clear interval
+      if (counter <= 9) {
+        questionContainer.innerHTML = 'Game Over! It appears you are not a master of gluten knowledge. Try again!'
+        returnHomeButton.style.display = 'inline'
+        answerContainer.style.display = 'none'
+      }
     } else if (timer < 10) {
       timerText.innerHTML = '00:0' + timer
     } else if (timer >= 10) {
