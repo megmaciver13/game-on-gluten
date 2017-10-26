@@ -7,16 +7,18 @@ var currentQuestion
 var currentAnswerChoices = []
 var counter = 0
 
-startButton.addEventListener('click', function showQuestions () {
-  currentQuestion = `${triviaQuestions[0].question}`
+startButton.addEventListener('click', showQuestions)
+
+function showQuestions () {
+  currentQuestion = `${triviaQuestions[counter].question}`
   questionContainer.innerHTML = currentQuestion
   return showAnswers ()
-})
+}
 
 function showAnswers () {
   answerContainer.style.display = 'inline'
-  for (letter in triviaQuestions[0].answerChoices) {
-    currentAnswerChoices.push(`<div class='choice${letter}'> ${letter} : ${triviaQuestions[0].answerChoices.letter}</div>`)
+  for (letter in triviaQuestions[counter].answerChoices) {
+    currentAnswerChoices.push(`<div class='choice${letter}'> ${letter} : ${triviaQuestions[counter].answerChoices.letter}</div>`)
   }
   answerContainer.innerHTML = currentAnswerChoices.join('<br>')
 }
@@ -30,11 +32,11 @@ answerContainer.addEventListener('mouseout', function (e) {
 })
 
 answerContainer.addEventListener('click', function (e){
-  var correctAnswerLetter = triviaQuestions[0].correctAnswer
+  var correctAnswerLetter = triviaQuestions[counter].correctAnswer
   var correctAnswer = `triviaQuestions[0].answerChoices.${correctAnswerLetter}`
   var wrongDiv = `<div class='wrong'>Not quite!</div>`
   var correctDiv = `<div class='correct'>Correct!</div>`
-  if (e.target.className === `choice${triviaQuestions[0].correctAnswer}`) {
+  if (e.target.className === `choice${triviaQuestions[counter].correctAnswer}`) {
     answerContainer.innerHTML = correctDiv
     nextButton.style.display = 'inline'
   } else {
@@ -43,14 +45,12 @@ answerContainer.addEventListener('click', function (e){
   }
 })
 
-// nextButton.addEventListener('click', generateNextQuestion)
-//
-// function generateNextQuestion () {
-//   for (var i = 0; i <= triviaQuestions.length; i++) {
-//     triviaQuestion[counter]
-//     counter += 1
-//   }
-// }
+nextButton.addEventListener('click', generateNextQuestion)
+
+function generateNextQuestion () {
+  counter += 1
+  showQuestions ()
+}
 
 var triviaQuestions = [
   {
