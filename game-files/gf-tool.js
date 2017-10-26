@@ -4,6 +4,8 @@ var answerContainer = document.querySelector('.answer-container')
 var nextButton = document.querySelector('.next')
 var scoreContainer = document.querySelector('.trivia-score')
 var returnHomeButton = document.querySelector('#return-home')
+var timerText = document.querySelector('.trivia-timer')
+var timer = 60000
 var score = 0
 var currentQuestion
 var currentAnswerChoices = []
@@ -83,4 +85,12 @@ function showFinalScore () {
   returnHomeButton.style.display = 'inline'
 }
 
-timer
+setInterval(function () {
+  timer --
+  if (timer === 0) {
+    clearInterval ()
+    console.log('time is up')
+  }
+}, 1000)
+
+timerText
