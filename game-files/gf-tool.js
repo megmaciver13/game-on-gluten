@@ -1,10 +1,11 @@
 var startButton = document.querySelector('.start-button')
 var questionContainer = document.querySelector('.question-container')
 var answerContainer = document.querySelector('.answer-container')
-var submissionButton = document.querySelector('.submission-button')
+var nextButton = document.querySelector('.next')
 var score = 0
 var currentQuestion
 var currentAnswerChoices = []
+var counter = 0
 
 startButton.addEventListener('click', function showQuestions () {
   currentQuestion = `${triviaQuestions[0].question}`
@@ -15,35 +16,41 @@ startButton.addEventListener('click', function showQuestions () {
 function showAnswers () {
   answerContainer.style.display = 'inline'
   for (letter in triviaQuestions[0].answerChoices) {
-    currentAnswerChoices.push(`<div class='choice'> ${letter} : ${triviaQuestions[0].answerChoices.letter}</label>`)
+    currentAnswerChoices.push(`<div class='choice${letter}'> ${letter} : ${triviaQuestions[0].answerChoices.letter}</div>`)
   }
   answerContainer.innerHTML = currentAnswerChoices.join('<br>')
 }
 
 answerContainer.addEventListener('mouseover', function (e) {
   e.target.style.color = '#a2c1a4'
-  // if (e.target.style.color === '#55595d') {
-  //   console.log('hovered')
-  //   e.target.style.color = '#a2c1a4'
-  // } else {
-  //   e.target.style.color = '#55595d'
-  // }
 })
 
 answerContainer.addEventListener('mouseout', function (e) {
   e.target.style.color = '#55595d'
 })
 
-  // for (var i = 0; i <= currentAnswerChoices.length; i++) {
-  //   var answerField = document.createElement("input") // how to create various attributes of input field? (and what attributes are necessary?)
-  //   answerField.setAttribute("type", "radio")
-  //   var lineBreak = document.createElement("br")
-  //   currentAnswerChoices[i]
-  //   answerContainer.append(answerField)
-  //   answerContainer.append(lineBreak)
-  // }
+answerContainer.addEventListener('click', function (e){
+  var correctAnswerLetter = triviaQuestions[0].correctAnswer
+  var correctAnswer = `triviaQuestions[0].answerChoices.${correctAnswerLetter}`
+  var wrongDiv = `<div class='wrong'>Not quite!</div>`
+  var correctDiv = `<div class='correct'>Correct!</div>`
+  if (e.target.className === `choice${triviaQuestions[0].correctAnswer}`) {
+    answerContainer.innerHTML = correctDiv
+    nextButton.style.display = 'inline'
+  } else {
+    answerContainer.innerHTML = wrongDiv
+    nextButton.style.display = 'inline'
+  }
+})
 
-// submission-button.addEventListener('click', function submit () {})
+// nextButton.addEventListener('click', generateNextQuestion)
+//
+// function generateNextQuestion () {
+//   for (var i = 0; i <= triviaQuestions.length; i++) {
+//     triviaQuestion[counter]
+//     counter += 1
+//   }
+// }
 
 var triviaQuestions = [
   {
@@ -53,8 +60,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'b',
-    type: 'radio'
+    correctAnswer: 'b'
   },
   {
     question: 'Question 2',
@@ -63,8 +69,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'b',
-    type: 'radio'
+    correctAnswer: 'b'
   },
   {
     question: 'Question 3',
@@ -73,8 +78,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'c',
-    type: 'radio'
+    correctAnswer: 'c'
   },
   {
     question: 'Question 4',
@@ -83,8 +87,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'a',
-    type: 'radio'
+    correctAnswer: 'a'
   },
   {
     question: 'Question 5',
@@ -93,8 +96,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'a',
-    type: 'radio'
+    correctAnswer: 'a'
   },
   {
     question: 'Question 6',
@@ -103,8 +105,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'b',
-    type: 'radio'
+    correctAnswer: 'b'
   },
   {
     question: 'Question 7',
@@ -113,8 +114,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'a',
-    type: 'radio'
+    correctAnswer: 'a'
   },
   {
     question: 'Question 8',
@@ -123,8 +123,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'c',
-    type: 'radio'
+    correctAnswer: 'c'
   },
   {
     question: 'Question 9',
@@ -133,8 +132,7 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'a',
-    type: 'radio'
+    correctAnswer: 'a'
   },
   {
     question: 'Question 10',
@@ -143,7 +141,6 @@ var triviaQuestions = [
       b: 'B',
       c: 'C'
     },
-    correctAnswer: 'b',
-    type: 'radio'
+    correctAnswer: 'b'
   }
 ]
