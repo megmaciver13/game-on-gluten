@@ -3,6 +3,7 @@ var questionContainer = document.querySelector('.question-container')
 var answerContainer = document.querySelector('.answer-container')
 var nextButton = document.querySelector('.next')
 var scoreContainer = document.querySelector('.trivia-score')
+var returnHomeButton = document.querySelector('#return-home')
 var score = 0
 var currentQuestion
 var currentAnswerChoices = []
@@ -53,8 +54,33 @@ answerContainer.addEventListener('click', function (e) {
 
 nextButton.addEventListener('click', generateNextQuestion)
 
+// event listener to click enter for 'next question' page
+// if (questionContainer.innerHTML === wrongDiv || questionContainer.innerHTML === correctDiv) {
+//   window.addEventListener('keypress', generateNextQuestion)
+// }
+
 function generateNextQuestion () {
-  currentAnswerChoices = []
-  counter += 1
-  showQuestions()
+  if (counter < 9) {
+    currentAnswerChoices = []
+    counter += 1
+    showQuestions()
+  } else {
+    showFinalScore()
+  }
 }
+
+function showFinalScore () {
+  if (score === 0) {
+    answerContainer.style.display = 'none'
+    questionContainer.innerHTML = 'Game over! Unfortunately, you did not score. You need to brush up on your gluten knowledge!'
+  } else if (score < (counter - 5)) {
+    answerContainer.style.display = 'none'
+    questionContainer.innerHTML = `Your final score is ${score}. Looks like you need to brush up on your gluten knowledge.`
+  } else if (score <= counter) {
+    answerContainer.style.display = 'none'
+    questionContainer.innerHTML = `Your final score is ${score}. Looks like you know a thing or two about gluten!`
+  }
+  returnHomeButton.style.display = 'inline'
+}
+
+timer

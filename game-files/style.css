@@ -27,6 +27,12 @@ h3 {
   padding: 0px 10px 30px 10px;
 }
 
+.score-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .game-container {
   background-color: #ffffff;
   margin: 20px 150px 10px 150px;
@@ -54,5 +60,9 @@ h3 {
 }
 
 .next {
+  display: none;
+}
+
+#return-home {
   display: none;
 }
