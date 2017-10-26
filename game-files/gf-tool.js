@@ -48,6 +48,7 @@ answerContainer.addEventListener('click', function (e){
 nextButton.addEventListener('click', generateNextQuestion)
 
 function generateNextQuestion () {
+  currentAnswerChoices = []
   counter += 1
   showQuestions ()
 }
