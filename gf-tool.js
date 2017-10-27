@@ -89,6 +89,7 @@ function generateNextQuestion () {
 function showFinalScore () {
   stopTimer()
   timer = 0
+  timerText.innerHTML = '00:00'
   if (score === 0) {
     nextButton.style.display = 'none'
     questionContainer.innerHTML = 'Game over! Unfortunately, you did not score. You need to brush up on your gluten knowledge!'
