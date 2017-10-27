@@ -1,3 +1,4 @@
+// define variables
 var startButton = document.querySelector('#start-button')
 var questionContainer = document.querySelector('.question-container')
 var answerContainer = document.querySelector('.answer-container')
@@ -11,9 +12,11 @@ var currentQuestion
 var currentAnswerChoices = []
 var counter = 0
 
+// create event listener for start button to start generating the trivia questions and start the timer
 startButton.addEventListener('click', showQuestions)
 startButton.addEventListener('click', startTimer)
 
+// create function to take down the start message and generate the first trivia question
 function showQuestions () {
   startButton.style.display = 'none'
   nextButton.style.display = 'none'
@@ -22,6 +25,7 @@ function showQuestions () {
   return showAnswers()
 }
 
+// create a function to generate the answer choices
 function showAnswers () {
   answerContainer.style.display = 'inline'
   currentAnswerChoices.push(`<div class='choicea'> A : ${triviaQuestions[counter].answerChoices.a}</div>`)
@@ -34,14 +38,17 @@ function showAnswers () {
   answerContainer.innerHTML = currentAnswerChoices.join('<br>')
 }
 
+// create event listener for each answer choice to change color when the mouse hovers
 answerContainer.addEventListener('mouseover', function (e) {
   e.target.style.color = '#a2c1a4'
 })
 
+// create event listener for each answer choice to change color back when the hovering mouse leaves
 answerContainer.addEventListener('mouseout', function (e) {
   e.target.style.color = '#55595d'
 })
 
+// create event listener to submit answer choice, show a message that the message is either right or wrong, and generate a next question button
 answerContainer.addEventListener('click', function (e) {
   var correctAnswerLetter = triviaQuestions[counter].correctAnswer
   var correctAnswer = `triviaQuestions[0].answerChoices.${correctAnswerLetter}`
@@ -60,6 +67,7 @@ answerContainer.addEventListener('click', function (e) {
   }
 })
 
+// create an event listener to generate the next question
 nextButton.addEventListener('click', generateNextQuestion)
 
 // attempt at event listener to click enter for 'next question' button:
@@ -67,6 +75,7 @@ nextButton.addEventListener('click', generateNextQuestion)
 //   window.addEventListener('keypress', generateNextQuestion)
 // }
 
+// increase the counter number to iterate through the next question and answers in the triviaQuestions array
 function generateNextQuestion () {
   if (counter < 9) {
     currentAnswerChoices = []
@@ -78,6 +87,7 @@ function generateNextQuestion () {
   }
 }
 
+// show final score and corresponding message
 function showFinalScore () {
   if (score === 0) {
     nextButton.style.display = 'none'
@@ -92,8 +102,10 @@ function showFinalScore () {
   returnHomeButton.style.display = 'inline'
 }
 
+// create event listener for home button to reset to the start page
 returnHomeButton.addEventListener('click', resetPage)
 
+// create a function to reset to the start page to begin the quiz again
 function resetPage () {
   questionContainer.innerHTML = "So you want to learn more about gluten? You've come to right place. Welcome to <a class='game-title'>Can I Eat This?</a>, a game on gluten. You'll learn all about this pervasive protein - what it is, what it's in, and how to avoid it. Click the button below to begin.<br>"
   returnHomeButton.style.display = 'none'
@@ -104,6 +116,7 @@ function resetPage () {
   currentAnswerChoices = []
 }
 
+// create timer
 function startTimer () {
   var gameTimer = setInterval(function () {
     timer--

@@ -1,3 +1,4 @@
+// array holding the trivia questions and corresponding answer choices
 var triviaQuestions = [
   {
     question: '1. What is gluten?',
