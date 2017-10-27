@@ -114,6 +114,7 @@ function resetPage () {
   counter = 0
   score = 0
   timer = 60
+  scoreContainer.innerHTML = score
   currentAnswerChoices = []
 }
 
