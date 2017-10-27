@@ -2,92 +2,92 @@ var triviaQuestions = [
   {
     question: '1. What is gluten?',
     answerChoices: {
-      a: 'A',
+      a: 'a seed found in plants',
       b: 'a protein comprised of two molecules, glutenin and gliadin',
-      c: 'C'
+      c: 'glue that holds food together'
     },
     correctAnswer: 'b'
   },
   {
-    question: 'Question 2',
+    question: '2. Which grains contain gluten?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'corn and wheat',
+      b: 'wheat, barley, and rye',
+      c: 'rice and corn'
     },
     correctAnswer: 'b'
   },
   {
-    question: 'Question 3',
+    question: '3. What is Celiac Disease?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'an allergy',
+      b: 'a contagious illness',
+      c: 'a genetic autoimmune disease'
     },
     correctAnswer: 'c'
   },
   {
-    question: 'Question 4',
+    question: '4. Celiac Disease affects what part of the body?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'small intestine',
+      b: 'stomach',
+      c: 'esophagus'
     },
     correctAnswer: 'a'
   },
   {
-    question: 'Question 5',
+    question: '5. What does gluten do to the small intestine?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'triggers an immune response, damaging the lining of the intestine over time (and resulting in malabsorption)',
+      b: 'prevents your stomach from being able to digest any foods',
+      c: 'blocks the production of digestive acid in your stomach'
     },
     correctAnswer: 'a'
   },
   {
-    question: 'Question 6',
+    question: '6. What are the treatment options for Celiac Disease?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'take a pill',
+      b: 'gluten free diet',
+      c: 'administer a shot'
     },
     correctAnswer: 'b'
   },
   {
-    question: 'Question 7',
+    question: '7. Which of the following foods contains gluten?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'soy sauce',
+      b: 'olive oil',
+      c: 'rice'
     },
     correctAnswer: 'a'
   },
   {
-    question: 'Question 8',
+    question: '8. Which of the following foods contains gluten?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'cheese',
+      b: 'balsamic vinegar',
+      c: 'malt vinegar'
     },
     correctAnswer: 'c'
   },
   {
-    question: 'Question 9',
+    question: '9. Which of the following foods contains gluten?',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'gravy',
+      b: 'coconut oil',
+      c: 'nuts'
     },
     correctAnswer: 'a'
   },
   {
-    question: 'Question 10',
+    question: '10. Are oats gluten free',
     answerChoices: {
-      a: 'A',
-      b: 'B',
-      c: 'C'
+      a: 'Yes',
+      b: 'No',
+      c: 'Technically oats are gluten free, but they are often contaminated by mills that also process wheat.'
     },
-    correctAnswer: 'b'
+    correctAnswer: 'c'
   }
 ]
 

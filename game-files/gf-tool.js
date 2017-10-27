@@ -24,13 +24,12 @@ function showQuestions () {
 
 function showAnswers () {
   answerContainer.style.display = 'inline'
-  answerContainer.innerHTML = ''
   currentAnswerChoices.push(`<div class='choicea'> A : ${triviaQuestions[counter].answerChoices.a}</div>`)
   currentAnswerChoices.push(`<div class='choiceb'> B : ${triviaQuestions[counter].answerChoices.b}</div>`)
   currentAnswerChoices.push(`<div class='choicec'> C : ${triviaQuestions[counter].answerChoices.c}</div>`)
-  // couldn't get the following to work
+  // attempt at a for loop to keep code DRY
   // for (letter in triviaQuestions[counter].answerChoices) {
-  //   currentAnswerChoices.push(`<div class='choice${letter}'> ${letter} : ${triviaQuestions[counter].answerChoices.letter}</div>`)
+  //   currentAnswerChoices.push("<div class='choice'" + `${letter}` + ">" + `${letter}` + " : " + `${triviaQuestions[counter].answerChoices.letter}` + "</div>")
   // }
   answerContainer.innerHTML = currentAnswerChoices.join('<br>')
 }
