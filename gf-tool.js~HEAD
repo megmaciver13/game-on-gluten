@@ -50,8 +50,6 @@ answerContainer.addEventListener('mouseout', function (e) {
 
 // create event listener to submit answer choice, show a message that the message is either right or wrong, and generate a next question button
 answerContainer.addEventListener('click', function (e) {
-  var correctAnswerLetter = triviaQuestions[counter].correctAnswer
-  var correctAnswer = `triviaQuestions[0].answerChoices.${correctAnswerLetter}`
   var wrongDiv = `<div class='wrong'>Not quite!</div>`
   var correctDiv = `<div class='correct'>Correct! You have been awarded 1 point!</div>`
   if (e.target.className === `choice${triviaQuestions[counter].correctAnswer}`) {

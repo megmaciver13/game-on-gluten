@@ -1,7 +1,7 @@
 # Game on Gluten Documentation
 
 ## Description
-This is a trivia game, testing users' knowledge on Celiac Disease and the gluten free lifestyle. If users do not score well, they can cycle back through the questions and take the quiz additional times to learn the information.
+This is a trivia game, testing users' knowledge on Celiac Disease and the gluten-free diet. If users do not score well, they can cycle back through the questions and take the quiz additional times to learn the information.
 
 ## List of Features/User Stories
 - **Bronze** (achieved)

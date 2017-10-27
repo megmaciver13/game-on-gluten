@@ -87,6 +87,8 @@ function generateNextQuestion () {
 
 // show final score and corresponding message
 function showFinalScore () {
+  stopTimer()
+  timer = 0
   if (score === 0) {
     nextButton.style.display = 'none'
     questionContainer.innerHTML = 'Game over! Unfortunately, you did not score. You need to brush up on your gluten knowledge!'
@@ -114,15 +116,20 @@ function resetPage () {
   currentAnswerChoices = []
 }
 
+var gameTimer
+
+function stopTimer () {
+  console.log(gameTimer)
+  clearInterval(gameTimer)
+}
+
 // create timer
 function startTimer () {
-  var gameTimer = setInterval(function () {
+  gameTimer = setInterval(function () {
     timer--
     if (timer === 0) {
-      timer = 0
       timerText.innerHTML = '00:00'
-      clearInterval(gameTimer)
-      // fix clear interval
+      stopTimer()
       if (counter <= 9) {
         questionContainer.innerHTML = 'Game Over! It appears you are not a master of gluten knowledge. Try again!'
         returnHomeButton.style.display = 'inline'
@@ -134,4 +141,5 @@ function startTimer () {
       timerText.innerHTML = '00:' + timer
     }
   }, 1000)
+
 }
