@@ -1,7 +1,10 @@
 // define variables
+var currentQuestionSet = []
 var startButton = document.querySelector('#start-button')
 var questionContainer = document.querySelector('.question-container')
 var answerContainer = document.querySelector('.answer-container')
+var celiacCategory = document.querySelector('#celiac')
+var eatCategory = document.querySelector('#eat')
 var nextButton = document.querySelector('.next')
 var scoreContainer = document.querySelector('.trivia-score')
 var returnHomeButton = document.querySelector('#return-home')
@@ -12,15 +15,48 @@ var currentQuestion
 var currentAnswerChoices = []
 var counter = 0
 
-// create event listener for start button to start generating the trivia questions and start the timer
-startButton.addEventListener('click', showQuestions)
-startButton.addEventListener('click', startTimer)
+// create event listener for start button to prompt the user to choose a category
+startButton.addEventListener('click', chooseCategory)
+
+// create function to choose category
+function chooseCategory () {
+  startButton.style.display = 'none'
+  nextButton.style.display = 'none'
+  answerContainer.style.display = 'inline'
+  var basicQs = '<div class="category" id="celiac">What is Celiac Disease?</div>'
+  var foodQs = '<div class="category" id="eat">Can I Eat This?</div>'
+  questionContainer.innerHTML = "Choose which category you'd like to play:"
+  answerContainer.innerHTML = basicQs + '<br>' + foodQs
+  answerContainer.addEventListener('click', setChosenCategoryQuestions)
+}
+
+// event listener on answer container where category choices are
+
+
+// function to listen for which category in answer container was chosen
+function setChosenCategoryQuestions (e) {
+  if (e.target.id === 'celiac') {
+    setQuestionsToCeliacCategory()
+    startTimer()
+  } else if (e.target.id === 'eat') {
+    setQuestionsToFoodCategory()
+    startTimer()
+  }
+}
+
+function setQuestionsToCeliacCategory () {
+  currentQuestionSet = celiacQuestions
+  showQuestions()
+}
+
+function setQuestionsToFoodCategory () {
+  currentQuestionSet = foodQuestions
+  showQuestions()
+}
 
 // create function to take down the start message and generate the first trivia question
 function showQuestions () {
-  startButton.style.display = 'none'
-  nextButton.style.display = 'none'
-  currentQuestion = `${triviaQuestions[counter].question}`
+  currentQuestion = `${currentQuestionSet[counter].question}`
   questionContainer.innerHTML = currentQuestion
   return showAnswers()
 }
@@ -28,12 +64,12 @@ function showQuestions () {
 // create a function to generate the answer choices
 function showAnswers () {
   answerContainer.style.display = 'inline'
-  currentAnswerChoices.push(`<div class='choicea'> A : ${triviaQuestions[counter].answerChoices.a}</div>`)
-  currentAnswerChoices.push(`<div class='choiceb'> B : ${triviaQuestions[counter].answerChoices.b}</div>`)
-  currentAnswerChoices.push(`<div class='choicec'> C : ${triviaQuestions[counter].answerChoices.c}</div>`)
+  currentAnswerChoices.push(`<div class='choicea'> A : ${currentQuestionSet[counter].answerChoices.a}</div>`)
+  currentAnswerChoices.push(`<div class='choiceb'> B : ${currentQuestionSet[counter].answerChoices.b}</div>`)
+  currentAnswerChoices.push(`<div class='choicec'> C : ${currentQuestionSet[counter].answerChoices.c}</div>`)
   // attempt at a for loop to keep code DRY
-  // for (letter in triviaQuestions[counter].answerChoices) {
-  //   currentAnswerChoices.push("<div class='choice'" + `${letter}` + ">" + `${letter}` + " : " + `${triviaQuestions[counter].answerChoices.letter}` + "</div>")
+  // for (letter in currentQuestionSet[counter].answerChoices) {
+  //   currentAnswerChoices.push("<div class='choice'" + `${letter}` + ">" + `${letter}` + " : " + `${currentQuestionSet[counter].answerChoices.letter}` + "</div>")
   // }
   answerContainer.innerHTML = currentAnswerChoices.join('<br>')
 }
@@ -52,7 +88,7 @@ answerContainer.addEventListener('mouseout', function (e) {
 answerContainer.addEventListener('click', function (e) {
   var wrongDiv = `<div class='wrong'>Not quite!</div>`
   var correctDiv = `<div class='correct'>Correct! You have been awarded 1 point!</div>`
-  if (e.target.className === `choice${triviaQuestions[counter].correctAnswer}`) {
+  if (e.target.className === `choice${currentQuestionSet[counter].correctAnswer}`) {
     answerContainer.style.display = 'none'
     questionContainer.innerHTML = correctDiv
     nextButton.style.display = 'inline'
@@ -115,6 +151,7 @@ function resetPage () {
   score = 0
   timer = 60
   scoreContainer.innerHTML = score
+  currentQuestionSet = []
   currentAnswerChoices = []
 }
 
