@@ -3,8 +3,6 @@ var currentQuestionSet = []
 var startButton = document.querySelector('#start-button')
 var questionContainer = document.querySelector('.question-container')
 var answerContainer = document.querySelector('.answer-container')
-var celiacCategory = document.querySelector('#celiac')
-var eatCategory = document.querySelector('#eat')
 var nextButton = document.querySelector('.next')
 var scoreContainer = document.querySelector('.trivia-score')
 var returnHomeButton = document.querySelector('#return-home')
@@ -30,10 +28,7 @@ function chooseCategory () {
   answerContainer.addEventListener('click', setChosenCategoryQuestions)
 }
 
-// event listener on answer container where category choices are
-
-
-// function to listen for which category in answer container was chosen
+// function to listen for which category in answer container was chosen and start timer
 function setChosenCategoryQuestions (e) {
   if (e.target.id === 'celiac') {
     setQuestionsToCeliacCategory()
@@ -180,5 +175,4 @@ function startTimer () {
       timerText.innerHTML = '00:' + timer
     }
   }, 1000)
-
 }
